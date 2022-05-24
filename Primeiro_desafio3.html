@@ -1,0 +1,52 @@
+<meta charset="UTF-8">
+<input/>
+<button>Entre com o Texto</button>
+<script>
+    var letras = ["a","b","c","d","e"];
+    var cripto = ["enter","imes","ai","ober","ufat"];
+    //var frasenova = [];
+   // var entrada = document.querySelector("input");
+   // entrada.focus();
+   // comentei
+    var entrada = document.querySelector("input");
+    entrada.focus();
+    entrada.addEventListener("keypress", function(e) {
+    if(!checkChar(e)) {
+    e.preventDefault();
+     }
+    });
+
+    function checkChar(e) {
+        var char = String.fromCharCode(e.keyCode);
+        var pattern = '[a-z0-9 ]';
+        if (char.match(pattern)) {
+            return true;
+        }
+    }
+
+    function verifica() {
+       frasenova = entrada.value.split("");
+       vetor = entrada.value.split("");
+       var taman = (letras.length);
+        var lugar = 0;
+        var achou = 0;
+        while(lugar < taman) {
+            while(achou !== -1) {
+                achou = vetor.indexOf(letras[lugar]);
+                if (achou == -1) {
+                      break;
+                  }
+                vetor.splice(achou,1,"Z");
+                frasenova.splice(achou,1,cripto[lugar])
+                  }
+            achou = 0;
+            lugar++;
+        }  
+        alert(frasenova);
+        var minhaFrase = frasenova.join("");
+        alert(minhaFrase);
+        }
+
+    var button = document.querySelector("button");
+    button.onclick = verifica;
+</script>
